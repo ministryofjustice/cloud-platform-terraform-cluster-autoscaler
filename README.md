@@ -11,23 +11,19 @@ This is the cluster-autoscaler terraform module
 module "cluster_autoscaler" {
   source = "github.com/ministryofjustice/cloud-platform-terraform-cluster-autoscaler?ref=0.0.1"
 
+  cluster_domain_name         = data.terraform_remote_state.cluster.outputs.cluster_domain_name
+  eks_cluster_id              = data.terraform_remote_state.cluster.outputs.cluster_id
+  eks_cluster_oidc_issuer_url = data.terraform_remote_state.cluster.outputs.cluster_oidc_issuer_url
 }
-
 ```
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| visibility_timeout_seconds | The visibility timeout for the queue | integer | `30` | no |
-| message_retention_seconds | The number of seconds Amazon SQS retains a message| integer | `345600` | no |
-| max_message_size | Max message size in bytes | integer | `262144` | no |
-| delay_seconds | Seconds that message will be delayed for | integer | `0` | no |
-| receive_wait_time_seconds | Seconds for which a ReceiveMessage call will wait for a message to arrive | integer | `0` | no |
-| kms_master_key_id | The ID of an AWS-managed customer master key | string | - | no |
-| kms_data_key_reuse_period_seconds | Seconds for which Amazon SQS can reuse a data key | integer | `0` | no |
-| existing_user_name | if set, adds a policy rather than creating a new IAM user | string | - | no |
-| redrive_policy | if set, specifies the ARN of the "DeadLetter" queue | string | - | no |
-| encrypt_sqs_kms | if set to true, it enables SSE for SQS using KMS key | string | `false` | no |
+| Name                        | Description | Type | Default | Required |
+|---------------------------  |-------------|:----:|:-----:|:-----:|
+| enable_cluster_autoscaler   | Enable or not cluster autoscaler module | bool | true | no |
+| eks_cluster_id              | The EKS cluster ID used by autoscaler's IAM Policy | string | "" | yes |
+| eks_cluster_oidc_issuer_url | If EKS variable is set to true this is going to be used when we create the IAM OIDC role | string | "" | no |
+| cluster_domain_name         | cluster_domain_name | string |  | yes |
 
 
 ## Outputs
