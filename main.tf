@@ -1,7 +1,7 @@
 
 data "helm_repository" "stable" {
-  name = "stable"
-  url  = "https://kubernetes-charts.storage.googleapis.com"
+  name = "autoscaler"
+  url  = "https://kubernetes.github.io/autoscaler"
 }
 
 resource "helm_release" "cluster_autoscaler" {
@@ -9,10 +9,10 @@ resource "helm_release" "cluster_autoscaler" {
 
   name       = "cluster-autoscaler"
   repository = data.helm_repository.stable.metadata[0].name
-  chart      = "cluster-autoscaler"
+  chart      = "cluster-autoscaler-chart"
 
   namespace = "kube-system"
-  version   = "6.2.0"
+  version   = "1.0.3"
 
   values = [templatefile("${path.module}/templates/cluster-autoscaler.yaml.tpl", {
     cluster_name        = terraform.workspace
