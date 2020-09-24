@@ -1,7 +1,7 @@
 
 data "helm_repository" "stable" {
-  name = "stable"
-  url  = "https://kubernetes-charts.storage.googleapis.com"
+  name = "autoscaler"
+  url  = "https://kubernetes.github.io/autoscaler"
 }
 
 resource "helm_release" "cluster_autoscaler" {
@@ -9,10 +9,10 @@ resource "helm_release" "cluster_autoscaler" {
 
   name       = "cluster-autoscaler"
   repository = data.helm_repository.stable.metadata[0].name
-  chart      = "cluster-autoscaler"
+  chart      = "cluster-autoscaler-chart"
 
   namespace = "kube-system"
-  version   = "6.2.0"
+  version   = "1.0.3"
 
   values = [templatefile("${path.module}/templates/cluster-autoscaler.yaml.tpl", {
     cluster_name        = terraform.workspace
@@ -29,7 +29,7 @@ module "iam_assumable_role_admin" {
   role_name                     = "cas.${var.cluster_domain_name}"
   provider_url                  = var.eks_cluster_oidc_issuer_url
   role_policy_arns              = [ length(aws_iam_policy.cluster_autoscaler) >= 1 ? aws_iam_policy.cluster_autoscaler.0.arn : ""]
-  oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:cluster-autoscaler-aws-cluster-autoscaler"]
+  oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:cluster-autoscaler"]
 }
 
 resource "aws_iam_policy" "cluster_autoscaler" {

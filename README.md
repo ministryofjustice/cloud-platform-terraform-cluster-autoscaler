@@ -1,6 +1,6 @@
 # cloud-platform-terraform-cluster-autoscaler
 
-[![Releases](https://img.shields.io/github/release/ministryofjustice/cloud-platform-terraform-template/all.svg?style=flat-square)](https://github.com/ministryofjustice/cloud-platform-terraform-template/releases)
+[![Releases](https://img.shields.io/github/release/ministryofjustice/cloud-platform-terraform-cluster-autoscaler/all.svg?style=flat-square)](https://github.com/ministryofjustice/cloud-platform-terraform-cluster-autoscaler/releases)
 
 This is the cluster-autoscaler terraform module
 
