@@ -29,7 +29,7 @@ module "iam_assumable_role_admin" {
   role_name                     = "cas.${var.cluster_domain_name}"
   provider_url                  = var.eks_cluster_oidc_issuer_url
   role_policy_arns              = [ length(aws_iam_policy.cluster_autoscaler) >= 1 ? aws_iam_policy.cluster_autoscaler.0.arn : ""]
-  oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:cluster-autoscaler-aws-cluster-autoscaler"]
+  oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:cluster-autoscaler"]
 }
 
 resource "aws_iam_policy" "cluster_autoscaler" {
