@@ -1,7 +1,3 @@
-rbac:
-  create: true
-
-# sslCertPath: /etc/ssl/certs/ca-bundle.crt
 
 cloudProvider: aws
 awsRegion: eu-west-2
@@ -10,11 +6,10 @@ image:
   # image.repository -- Image repository
   repository: us.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler
   # image.tag -- Image tag
-  tag: v1.17.3
+  tag: v1.16.6
 
 autoDiscovery:
   clusterName: ${cluster_name}
-  # enabled: true
 
 rbac:
   create: true
