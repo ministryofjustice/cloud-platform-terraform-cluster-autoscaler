@@ -13,6 +13,7 @@ autoDiscovery:
 
 rbac:
   create: true
+  pspEnabled: true
   serviceAccount:
     create: true
     name: cluster-autoscaler
