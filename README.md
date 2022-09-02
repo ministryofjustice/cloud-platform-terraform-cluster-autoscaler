@@ -16,6 +16,12 @@ module "cluster_autoscaler" {
   eks_cluster_oidc_issuer_url = data.terraform_remote_state.cluster.outputs.cluster_oidc_issuer_url
 }
 ```
+
+<!--- BEGIN_TF_DOCS --->
+<!--- END_TF_DOCS --->
+
+
+
 ## Inputs
 
 | Name                        | Description | Type | Default | Required |
