@@ -61,23 +61,6 @@ No outputs.
 
 <!--- END_TF_DOCS --->
 
-
-
-## Inputs
-
-| Name                        | Description | Type | Default | Required |
-|---------------------------  |-------------|:----:|:-----:|:-----:|
-| enable_cluster_autoscaler   | Enable or not cluster autoscaler module | bool | true | no |
-| eks_cluster_id              | The EKS cluster ID used by autoscaler's IAM Policy | string | "" | yes |
-| eks_cluster_oidc_issuer_url | If EKS variable is set to true this is going to be used when we create the IAM OIDC role | string | "" | no |
-| cluster_domain_name         | cluster_domain_name | string |  | yes |
-
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-
 ## Reading Material
 
 - https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
