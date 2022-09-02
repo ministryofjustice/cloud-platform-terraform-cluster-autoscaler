@@ -3,10 +3,10 @@ resource "helm_release" "cluster_autoscaler" {
 
   name       = "cluster-autoscaler"
   repository = "https://kubernetes.github.io/autoscaler"
-  chart      = "cluster-autoscaler-chart"
+  chart      = "cluster-autoscaler"
 
   namespace = "kube-system"
-  version   = "1.0.3"
+  version   = "9.12.0"
 
   values = [templatefile("${path.module}/templates/cluster-autoscaler.yaml.tpl", {
     cluster_name        = terraform.workspace
@@ -45,6 +45,7 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
       "autoscaling:DescribeLaunchConfigurations",
       "autoscaling:DescribeTags",
       "ec2:DescribeLaunchTemplateVersions",
+      "ec2:DescribeInstanceTypes",
     ]
 
     resources = ["*"]
@@ -55,6 +56,11 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
     effect = "Allow"
 
     actions = [
+      "autoscaling:DescribeAutoScalingGroups",
+      "autoscaling:DescribeAutoScalingInstances",
+      "autoscaling:DescribeLaunchConfigurations",
+      "autoscaling:DescribeTags",
+      "ec2:DescribeLaunchTemplateVersions",
       "autoscaling:SetDesiredCapacity",
       "autoscaling:TerminateInstanceInAutoScalingGroup",
       "autoscaling:UpdateAutoScalingGroup",
