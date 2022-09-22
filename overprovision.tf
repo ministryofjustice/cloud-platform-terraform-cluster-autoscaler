@@ -6,12 +6,14 @@ locals {
   pod_memory = {
     manager = "800Mi"
     live    = "1800Mi"
+    live-2  = "1800Mi"
     default = "100Mi"
   }
 
   pod_cpu = {
     manager = "100m"
     live    = "100m"
+    live-2  = "100m"
     default = "100m"
   }
 }
