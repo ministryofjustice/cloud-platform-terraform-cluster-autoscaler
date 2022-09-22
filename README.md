@@ -57,7 +57,6 @@ module "cluster_autoscaler" {
 | <a name="input_cluster_domain_name"></a> [cluster\_domain\_name](#input\_cluster\_domain\_name) | The cluster domain used for externalDNS annotations and certmanager | `any` | n/a | yes |
 | <a name="input_eks_cluster_id"></a> [eks\_cluster\_id](#input\_eks\_cluster\_id) | The EKS cluster ID used by the autoscaler | `any` | n/a | yes |
 | <a name="input_eks_cluster_oidc_issuer_url"></a> [eks\_cluster\_oidc\_issuer\_url](#input\_eks\_cluster\_oidc\_issuer\_url) | If EKS variable is set to true this is going to be used when we create the IAM OIDC role | `string` | `""` | no |
-| <a name="input_enable_cluster_autoscaler"></a> [enable\_cluster\_autoscaler](#input\_enable\_cluster\_autoscaler) | Enable or not cluster autoscaler module | `bool` | `true` | no |
 
 ## Outputs
 
