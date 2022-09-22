@@ -25,8 +25,6 @@ module "iam_assumable_role_admin" {
 }
 
 resource "aws_iam_policy" "cluster_autoscaler" {
-  count = var.enable_cluster_autoscaler ? 1 : 0
-
   name_prefix = "cas"
   description = "EKS cluster-autoscaler policy for cluster ${var.cluster_domain_name}"
   policy      = data.aws_iam_policy_document.cluster_autoscaler.json

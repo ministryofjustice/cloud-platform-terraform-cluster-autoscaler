@@ -12,8 +12,8 @@ variable "eks_cluster_id" {
   description = "The EKS cluster ID used by the autoscaler"
 }
 
-variable "enable_cluster_autoscaler" {
-  description = "Enable or not cluster autoscaler module"
-  type        = bool
-  default     = true
-}
+# variable "enable_cluster_autoscaler" {
+#   description = "Enable or not cluster autoscaler module"
+#   type        = bool
+#   default     = true
+# }
