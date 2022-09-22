@@ -20,6 +20,7 @@ locals {
 
 
 resource "kubernetes_namespace" "overprovision" {
+  count = var.enable_overprovision ? 1 : 0
   metadata {
     name = "overprovision"
 
@@ -41,9 +42,10 @@ resource "kubernetes_namespace" "overprovision" {
 }
 
 resource "helm_release" "cluster-overprovisioner" {
+  count      = var.enable_overprovision ? 1 : 0
   name       = "cluster-overprovisioner"
   chart      = "cluster-overprovisioner"
-  namespace  = kubernetes_namespace.overprovision.id
+  namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://charts.deliveryhero.io/"
   version    = "0.7.1"
 
@@ -55,9 +57,10 @@ resource "helm_release" "cluster-overprovisioner" {
 }
 
 resource "helm_release" "cluster-proportional-autoscaler" {
+  count      = var.enable_overprovision ? 1 : 0
   name       = "cluster-proportional-autoscaler"
   chart      = "cluster-proportional-autoscaler"
-  namespace  = kubernetes_namespace.overprovision.id
+  namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
   version    = "1.0.0"
 
