@@ -11,6 +11,12 @@ image:
 autoDiscovery:
   clusterName: ${cluster_name}
 
+extraArgs:
+  logtostderr: true
+  stderrthreshold: info
+  v: 4
+  scale-down-utilization-threshold: 0.1
+
 rbac:
   create: true
   pspEnabled: true
