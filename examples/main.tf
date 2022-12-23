@@ -5,7 +5,7 @@ provider "aws" {
 
 
 module "example_cluster_autoscaler" {
-  # source = ""github.com/ministryofjustice/cloud-platform-terraform-cluster-autoscaler?ref=0.2.0""
+  # source = "github.com/ministryofjustice/cloud-platform-terraform-cluster-autoscaler?ref=0.2.0"
   source = "../"
 
   cluster_domain_name         = "example_cluster_autoscaler.cloud-platform.service.justice.gov.uk"
