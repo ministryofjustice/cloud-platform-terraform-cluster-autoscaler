@@ -11,10 +11,10 @@ locals {
   }
 
   pod_cpu = {
-    manager = "100m"
-    live    = "100m"
-    live-2  = "100m"
-    default = "100m"
+    manager = "2m"
+    live    = "2m"
+    live-2  = "2m"
+    default = "2m"
   }
 }
 
