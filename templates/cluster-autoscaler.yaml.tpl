@@ -16,6 +16,7 @@ extraArgs:
   stderrthreshold: info
   v: 4
   scale-down-utilization-threshold: 0.1
+  ignore-daemonsets-utilization: true
 
 rbac:
   create: true
