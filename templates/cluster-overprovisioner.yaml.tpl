@@ -55,9 +55,9 @@ deployments:
     resources:
       limits:
         # deployments[0].resources.limits.cpu -- Default Deployment - CPU limit for the overprovision pods
-        cpu: ${ pod_cpu }
+        cpu: ${ mem_pod_cpu }
         # deployments[0].resources.limits.memory -- Default Deployment - Memory limit for the overprovision pods
-        memory: ${ pod_memory }
+        memory: ${ mem_pod_memory }
       requests:
         # deployments[0].resources.requests.cpu -- Default Deployment - CPU requested for the overprovision pods
         cpu: ${ mem_pod_cpu }
@@ -95,9 +95,9 @@ deployments:
         memory: ${ cpu_pod_memory }
       requests:
         # deployments[0].resources.requests.cpu -- Default Deployment - CPU requested for the overprovision pods
-        cpu: ${ pod_cpu }
+        cpu: ${ cpu_pod_cpu }
         # deployments[0].resources.requests.memory -- Default Deployment - Memory requested for the overprovision pods
-        memory: ${ pod_memory }
+        memory: ${ cpu_pod_memory }
     # deployments[0].tolerations -- Default Deployment - Optional deployment tolerations
     tolerations: []
     # deployments[0].affinity -- Default Deployment - Map of node/pod affinities
