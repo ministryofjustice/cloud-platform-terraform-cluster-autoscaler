@@ -60,6 +60,41 @@ deployments:
         memory: ${ pod_memory }
       requests:
         # deployments[0].resources.requests.cpu -- Default Deployment - CPU requested for the overprovision pods
+        cpu: ${ mem_pod_cpu }
+        # deployments[0].resources.requests.memory -- Default Deployment - Memory requested for the overprovision pods
+        memory: ${ mem_pod_memory }
+    # deployments[0].tolerations -- Default Deployment - Optional deployment tolerations
+    tolerations: []
+    # deployments[0].affinity -- Default Deployment - Map of node/pod affinities
+    affinity: {}
+    # deployments[0].labels -- Default Deployment - Optional labels tolerations
+    labels: {}
+    # deployments[0].topologySpreadConstraints -- Default Deployment - Optional topology spread constraints
+    topologySpreadConstraints: []
+      # - maxSkew: 1
+      #   topologyKey: failure-domain.beta.kubernetes.io/zone
+      #   whenUnsatisfiable: DoNotSchedule
+      # - maxSkew: 1
+      #   topologyKey: kubernetes.io/hostname
+      #   whenUnsatisfiable: ScheduleAnyway
+    # deployments[0].name -- Default Deployment - Name for additional deployments (will be added as label cluster-over-provisioner-name, so you can match it with affinity rules)
+  - name: cpu
+    # deployments[0].annotations -- Default Deployment - Annotations to add to the deployment
+    annotations: {}
+    # deployments[0].podAnnotations -- Default Deployment - Annotations to add to the pods
+    podAnnotations: {}
+    # deployments[0].replicaCount -- Default Deployment - Number of replicas
+    replicaCount: 1
+    # deployments[0].nodeSelector -- Default Deployment - Node labels for pod assignment
+    nodeSelector: {}
+    resources:
+      limits:
+        # deployments[0].resources.limits.cpu -- Default Deployment - CPU limit for the overprovision pods
+        cpu: ${ cpu_pod_cpu }
+        # deployments[0].resources.limits.memory -- Default Deployment - Memory limit for the overprovision pods
+        memory: ${ cpu_pod_memory }
+      requests:
+        # deployments[0].resources.requests.cpu -- Default Deployment - CPU requested for the overprovision pods
         cpu: ${ pod_cpu }
         # deployments[0].resources.requests.memory -- Default Deployment - Memory requested for the overprovision pods
         memory: ${ pod_memory }
