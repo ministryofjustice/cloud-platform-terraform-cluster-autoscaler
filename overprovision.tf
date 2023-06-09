@@ -87,7 +87,7 @@ resource "helm_release" "cluster-proportional-autoscaler-memory" {
 
 resource "helm_release" "cluster-proportional-autoscaler-cpu" {
   count      = var.enable_overprovision ? 1 : 0
-  name       = "cluster-proportional-autoscaler"
+  name       = "cluster-proportional-autoscaler-cpu"
   chart      = "cluster-proportional-autoscaler"
   namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
