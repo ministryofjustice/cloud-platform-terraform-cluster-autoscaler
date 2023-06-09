@@ -64,10 +64,10 @@ resource "helm_release" "cluster-overprovisioner" {
   version    = "0.7.1"
 
   values = [templatefile("${path.module}/templates/cluster-overprovisioner.yaml.tpl", {
-    mem_pod_memory = lookup(local.pod_memory, terraform.workspace, local._mem_pod_memory["default"])
-    mem_pod_cpu    = lookup(local.pod_cpu, terraform.workspace, local._mem_pod_cpu["default"])
-    cpu_pod_memory = lookup(local.pod_memory, terraform.workspace, local.cpu_pod_memory["default"])
-    cpu_pod_cpu    = lookup(local.pod_cpu, terraform.workspace, local.cpu_pod_cpu["default"])
+    mem_pod_memory = lookup(local.mem_pod_memory, terraform.workspace, local._mem_pod_memory["default"])
+    mem_pod_cpu    = lookup(local.mem_pod_cpu, terraform.workspace, local._mem_pod_cpu["default"])
+    cpu_pod_memory = lookup(local.cpu_pod_memory, terraform.workspace, local.cpu_pod_memory["default"])
+    cpu_pod_cpu    = lookup(local.cpu_pod_cpu, terraform.workspace, local.cpu_pod_cpu["default"])
   })]
 
 }
