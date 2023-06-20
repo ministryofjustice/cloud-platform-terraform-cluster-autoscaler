@@ -25,10 +25,10 @@ locals {
   }
 
   cpu_pod_cpu = {
-    manager = "100m"
-    live    = "100m"
-    live-2  = "100m"
-    default = "100m"
+    manager = "10m"
+    live    = "10m"
+    live-2  = "10m"
+    default = "10m"
   }
 }
 
@@ -74,7 +74,7 @@ resource "helm_release" "cluster-overprovisioner" {
 
 resource "helm_release" "cluster-proportional-autoscaler-memory" {
   count      = var.enable_overprovision ? 1 : 0
-  name       = "cluster-proportional-autoscaler"
+  name       = "cluster-proportional-autoscaler-memory"
   chart      = "cluster-proportional-autoscaler"
   namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
