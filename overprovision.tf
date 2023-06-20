@@ -21,14 +21,14 @@ locals {
     manager = "10Mi"
     live    = var.live_cpu_request # To enable tuning via components module call
     live-2  = var.live_cpu_request
-    default = "10Mi"
+    default = var.live_cpu_request
   }
 
   cpu_pod_cpu = {
     manager = "10m"
-    live    = "10m"
-    live-2  = "10m"
-    default = "10m"
+    live    = var.live_cpu_request
+    live-2  = var.live_cpu_request
+    default = var.live_cpu_request
   }
 }
 
