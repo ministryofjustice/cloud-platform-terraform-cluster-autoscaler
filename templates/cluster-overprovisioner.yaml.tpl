@@ -43,6 +43,8 @@ fullnameOverride: ""
 # @default -- []
 deployments:
   # deployments[0].name -- Default Deployment - Name for additional deployments (will be added as label cluster-over-provisioner-name, so you can match it with affinity rules)
+  
+  # Memory overprovisioner deployment
   - name: memory
     # deployments[0].annotations -- Default Deployment - Annotations to add to the deployment
     annotations: {}
@@ -55,14 +57,14 @@ deployments:
     resources:
       limits:
         # deployments[0].resources.limits.cpu -- Default Deployment - CPU limit for the overprovision pods
-        cpu: ${ mem_pod_cpu }
+        cpu: "2m"
         # deployments[0].resources.limits.memory -- Default Deployment - Memory limit for the overprovision pods
-        memory: ${ mem_pod_memory }
+        memory: ${ memory_overprovision }
       requests:
         # deployments[0].resources.requests.cpu -- Default Deployment - CPU requested for the overprovision pods
-        cpu: ${ mem_pod_cpu }
+        cpu: "2m"
         # deployments[0].resources.requests.memory -- Default Deployment - Memory requested for the overprovision pods
-        memory: ${ mem_pod_memory }
+        memory: ${ memory_overprovision }
     # deployments[0].tolerations -- Default Deployment - Optional deployment tolerations
     tolerations: []
     # deployments[0].affinity -- Default Deployment - Map of node/pod affinities
@@ -78,6 +80,8 @@ deployments:
       #   topologyKey: kubernetes.io/hostname
       #   whenUnsatisfiable: ScheduleAnyway
     # deployments[0].name -- Default Deployment - Name for additional deployments (will be added as label cluster-over-provisioner-name, so you can match it with affinity rules)
+  
+  # CPU Overprovisioner deployment
   - name: cpu
     # deployments[0].annotations -- Default Deployment - Annotations to add to the deployment
     annotations: {}
@@ -90,14 +94,14 @@ deployments:
     resources:
       limits:
         # deployments[0].resources.limits.cpu -- Default Deployment - CPU limit for the overprovision pods
-        cpu: ${ cpu_pod_cpu }
+        cpu: ${ cpu_overprovision }
         # deployments[0].resources.limits.memory -- Default Deployment - Memory limit for the overprovision pods
-        memory: ${ cpu_pod_memory }
+        memory: "10Mi"
       requests:
         # deployments[0].resources.requests.cpu -- Default Deployment - CPU requested for the overprovision pods
-        cpu: ${ cpu_pod_cpu }
+        cpu: ${ cpu_overprovision }
         # deployments[0].resources.requests.memory -- Default Deployment - Memory requested for the overprovision pods
-        memory: ${ cpu_pod_memory }
+        memory: "10Mi"
     # deployments[0].tolerations -- Default Deployment - Optional deployment tolerations
     tolerations: []
     # deployments[0].affinity -- Default Deployment - Map of node/pod affinities

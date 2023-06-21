@@ -3,35 +3,20 @@
 ##########
 
 locals {
-  mem_pod_memory = {
+  memory_overprovision = {
     manager = "800Mi"
     live    = var.live_memory_request  # To enable tuning via components module call
     live-2  = var.live_memory_request
     default = "100Mi"
   }
 
-  mem_pod_cpu = {
-    manager = "2m"
-    live    = "2m"
-    live-2  = "2m"
-    default = "2m"
-  }
-
-  cpu_pod_memory = {
-    manager = "10Mi"
-    live    = "10Mi"
-    live-2  = "10Mi"
-    default = "10Mi"
-  }
-
-  cpu_pod_cpu = {
+  cpu_overprovision = {
     manager = "10m"
     live    = var.live_cpu_request
     live-2  = var.live_cpu_request
     default = "10m"
   }
 }
-
 
 resource "kubernetes_namespace" "overprovision" {
   count = var.enable_overprovision ? 1 : 0
@@ -64,10 +49,8 @@ resource "helm_release" "cluster-overprovisioner" {
   version    = "0.7.1"
 
   values = [templatefile("${path.module}/templates/cluster-overprovisioner.yaml.tpl", {
-    mem_pod_memory = lookup(local.mem_pod_memory, terraform.workspace, local.mem_pod_memory["default"])
-    mem_pod_cpu    = lookup(local.mem_pod_cpu, terraform.workspace, local.mem_pod_cpu["default"])
-    cpu_pod_memory = lookup(local.cpu_pod_memory, terraform.workspace, local.cpu_pod_memory["default"])
-    cpu_pod_cpu    = lookup(local.cpu_pod_cpu, terraform.workspace, local.cpu_pod_cpu["default"])
+    memory_overprovision = lookup(local.memory_overprovision, terraform.workspace, local.memory_overprovision["default"])
+    cpu_overprovision    = lookup(local.cpu_overprovision, terraform.workspace, local.cpu_overprovision["default"])
   })]
 
 }
