@@ -17,3 +17,15 @@ variable "enable_overprovision" {
   type        = bool
   default     = true
 }
+
+variable "live_memory_request" {
+  description = "Overprovisioner memory request for live pods"
+  type        = string
+  default     = "1800Mi"
+}
+
+variable "live_cpu_request" {
+  description = "Overprovisioner cpu request for live pods"
+  type        = string
+  default     = "200m"
+}

@@ -3,21 +3,20 @@
 ##########
 
 locals {
-  pod_memory = {
+  memory_overprovision = {
     manager = "800Mi"
-    live    = "1800Mi"
-    live-2  = "1800Mi"
+    live    = var.live_memory_request  # To enable tuning via components module call
+    live-2  = var.live_memory_request
     default = "100Mi"
   }
 
-  pod_cpu = {
-    manager = "2m"
-    live    = "2m"
-    live-2  = "2m"
-    default = "2m"
+  cpu_overprovision = {
+    manager = "10m"
+    live    = var.live_cpu_request
+    live-2  = var.live_cpu_request
+    default = "10m"
   }
 }
-
 
 resource "kubernetes_namespace" "overprovision" {
   count = var.enable_overprovision ? 1 : 0
@@ -50,21 +49,34 @@ resource "helm_release" "cluster-overprovisioner" {
   version    = "0.7.1"
 
   values = [templatefile("${path.module}/templates/cluster-overprovisioner.yaml.tpl", {
-    pod_memory = lookup(local.pod_memory, terraform.workspace, local.pod_memory["default"])
-    pod_cpu    = lookup(local.pod_cpu, terraform.workspace, local.pod_cpu["default"])
+    memory_overprovision = lookup(local.memory_overprovision, terraform.workspace, local.memory_overprovision["default"])
+    cpu_overprovision    = lookup(local.cpu_overprovision, terraform.workspace, local.cpu_overprovision["default"])
   })]
 
 }
 
-resource "helm_release" "cluster-proportional-autoscaler" {
+resource "helm_release" "cluster-proportional-autoscaler-memory" {
   count      = var.enable_overprovision ? 1 : 0
-  name       = "cluster-proportional-autoscaler"
+  name       = "cluster-proportional-autoscaler-memory"
   chart      = "cluster-proportional-autoscaler"
   namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
   version    = "1.0.1"
 
-  values = [templatefile("${path.module}/templates/cpa.yaml.tpl", {
+  values = [templatefile("${path.module}/templates/cpa-mem.yaml.tpl", {
+  })]
+
+}
+
+resource "helm_release" "cluster-proportional-autoscaler-cpu" {
+  count      = var.enable_overprovision ? 1 : 0
+  name       = "cluster-proportional-autoscaler-cpu"
+  chart      = "cluster-proportional-autoscaler"
+  namespace  = kubernetes_namespace.overprovision[count.index].id
+  repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
+  version    = "1.0.1"
+
+  values = [templatefile("${path.module}/templates/cpa-cpu.yaml.tpl", {
   })]
 
 }
