@@ -27,5 +27,5 @@ variable "live_memory_request" {
 variable "live_cpu_request" {
   description = "Overprovisioner cpu request for live pods"
   type        = string
-  default     = "10m"
+  default     = "200m"
 }

@@ -7,7 +7,7 @@ locals {
     manager = "800Mi"
     live    = var.live_memory_request  # To enable tuning via components module call
     live-2  = var.live_memory_request
-    default = var.live_memory_request # TESTING
+    default = "100Mi"
   }
 
   mem_pod_cpu = {
@@ -28,7 +28,7 @@ locals {
     manager = "10m"
     live    = var.live_cpu_request
     live-2  = var.live_cpu_request
-    default = var.live_cpu_request # TESTING
+    default = "10m"
   }
 }
 
