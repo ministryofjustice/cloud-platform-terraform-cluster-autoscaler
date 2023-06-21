@@ -62,7 +62,7 @@ module "cluster_autoscaler" {
 | <a name="input_eks_cluster_id"></a> [eks\_cluster\_id](#input\_eks\_cluster\_id) | The EKS cluster ID used by the autoscaler | `any` | n/a | yes |
 | <a name="input_eks_cluster_oidc_issuer_url"></a> [eks\_cluster\_oidc\_issuer\_url](#input\_eks\_cluster\_oidc\_issuer\_url) | If EKS variable is set to true this is going to be used when we create the IAM OIDC role | `string` | `""` | no |
 | <a name="input_enable_overprovision"></a> [enable\_overprovision](#input\_enable\_overprovision) | Enable or disbale creation of overprovisioner | `bool` | `true` | no |
-| <a name="input_live_cpu_request"></a> [live\_cpu\_request](#input\_live\_cpu\_request) | Overprovisioner cpu request for live pods | `string` | `"10m"` | no |
+| <a name="input_live_cpu_request"></a> [live\_cpu\_request](#input\_live\_cpu\_request) | Overprovisioner cpu request for live pods | `string` | `"200m"` | no |
 | <a name="input_live_memory_request"></a> [live\_memory\_request](#input\_live\_memory\_request) | Overprovisioner memory request for live pods | `string` | `"1800Mi"` | no |
 
 ## Outputs
