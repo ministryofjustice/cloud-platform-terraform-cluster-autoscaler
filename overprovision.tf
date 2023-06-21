@@ -19,8 +19,8 @@ locals {
 
   cpu_pod_memory = {
     manager = "10Mi"
-    live    = var.live_cpu_request # To enable tuning via components module call
-    live-2  = var.live_cpu_request
+    live    = "10Mi"
+    live-2  = "10Mi"
     default = "10Mi"
   }
 
