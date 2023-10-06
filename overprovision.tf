@@ -5,7 +5,7 @@
 locals {
   memory_overprovision = {
     manager = "800Mi"
-    live    = var.live_memory_request  # To enable tuning via components module call
+    live    = var.live_memory_request # To enable tuning via components module call
     live-2  = var.live_memory_request
     default = "100Mi"
   }
@@ -27,6 +27,7 @@ resource "kubernetes_namespace" "overprovision" {
       "name"                                           = "overprovision"
       "cloud-platform.justice.gov.uk/environment-name" = "production"
       "cloud-platform.justice.gov.uk/is-production"    = "true"
+      "pod-security.kubernetes.io/audit"               = "restricted"
     }
 
     annotations = {
