@@ -47,7 +47,7 @@ resource "helm_release" "cluster-overprovisioner" {
   chart      = "cluster-overprovisioner"
   namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://charts.deliveryhero.io/"
-  version    = "0.7.1"
+  version    = "0.7.11"
 
   values = [templatefile("${path.module}/templates/cluster-overprovisioner.yaml.tpl", {
     memory_overprovision = lookup(local.memory_overprovision, terraform.workspace, local.memory_overprovision["default"])
