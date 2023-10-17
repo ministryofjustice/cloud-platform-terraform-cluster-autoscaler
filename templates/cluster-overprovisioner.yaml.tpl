@@ -1,4 +1,4 @@
-# podSecurityConte1xt -- Pod security context object
+# podSecurityContext -- Pod security context object
 podSecurityContext: 
   runAsUser: 1235
 
