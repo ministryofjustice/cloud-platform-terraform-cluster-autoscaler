@@ -4,7 +4,7 @@ awsRegion: eu-west-2
 
 image:
   # image.repository -- Image repository
-  repository: k8s.gcr.io/autoscaling/cluster-autoscaler
+  repository: registry.k8s.io/autoscaling/cluster-autoscaler
   # image.tag -- Image tag
   tag: v1.24.3
 
