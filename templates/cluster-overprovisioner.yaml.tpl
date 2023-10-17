@@ -1,4 +1,4 @@
-# podSecurityContext -- Pod security context object
+# podSecurityConte1xt -- Pod security context object
 podSecurityContext: 
   runAsUser: 1235
 
@@ -18,7 +18,7 @@ priorityClassDefault:
 
 image:
   # image.repository -- Image repository
-  repository: k8s.gcr.io/pause
+  repository: registry.k8s.io/pause
   # image.tag -- Image tag
   # @default -- `.Chart.AppVersion`
   tag: ""
