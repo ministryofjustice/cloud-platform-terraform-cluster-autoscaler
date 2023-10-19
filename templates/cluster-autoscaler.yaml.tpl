@@ -20,7 +20,7 @@ extraArgs:
 
 rbac:
   create: true
-  pspEnabled: true
+  pspEnabled: false
   serviceAccount:
     create: true
     name: cluster-autoscaler
