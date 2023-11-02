@@ -27,7 +27,7 @@ resource "kubernetes_namespace" "overprovision" {
       "name"                                           = "overprovision"
       "cloud-platform.justice.gov.uk/environment-name" = "production"
       "cloud-platform.justice.gov.uk/is-production"    = "true"
-      "pod-security.kubernetes.io/enforce"             = "restricted"
+      "pod-security.kubernetes.io/audit"               = "restricted"
     }
 
     annotations = {
