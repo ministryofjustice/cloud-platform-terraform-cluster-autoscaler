@@ -80,7 +80,7 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
 
 resource "kubernetes_cluster_role_binding" "super_privileged" {
   metadata {
-    name = "default:0-super-privileged"
+    name = "cluster-autoscaler:0-super-privileged"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
