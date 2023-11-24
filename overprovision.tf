@@ -82,18 +82,3 @@ resource "helm_release" "cluster-proportional-autoscaler-cpu" {
 
 }
 
-resource "kubernetes_cluster_role_binding" "super_privileged_bypass" {
-  metadata {
-    name = "overprovision:0-super-privileged"
-  }
-  role_ref {
-    api_group = "rbac.authorization.k8s.io"
-    kind      = "ClusterRole"
-    name      = "psp:0-super-privileged"
-  }
-  subject {
-    kind      = "Group"
-    name      = "system:serviceaccounts:overprovision"
-    api_group = "rbac.authorization.k8s.io"
-  }
-}
