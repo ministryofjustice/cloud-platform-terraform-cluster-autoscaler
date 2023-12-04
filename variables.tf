@@ -13,7 +13,7 @@ variable "eks_cluster_id" {
 }
 
 variable "enable_overprovision" {
-  description = "Enable or disbale creation of overprovisioner"
+  description = "Enable or disable creation of overprovisioner"
   type        = bool
   default     = true
 }
@@ -28,4 +28,16 @@ variable "live_cpu_request" {
   description = "Overprovisioner cpu request for live pods"
   type        = string
   default     = "200m"
+}
+
+variable "enable_vpa" {
+  description = "Enable or disable creation of vpa"
+  type = bool
+  default = false
+}
+
+variable "enable_goldilocks" {
+  description = "Enable or disbale creation of goldilocks"
+  type = bool
+  default = false
 }
