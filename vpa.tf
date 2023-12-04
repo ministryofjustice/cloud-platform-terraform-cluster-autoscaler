@@ -4,7 +4,7 @@ resource "helm_release" "vpa" {
   chart      = "fairwinds-stable/vpa"
 
   namespace  = "kube-system"
-  version    = "0.14.0"
+  version    = "3.0.2"
 
   values = [templatefile("${path.module}/templates/vpa.yaml.tpl", {
   })]
