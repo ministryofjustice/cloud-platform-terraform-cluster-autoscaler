@@ -4,7 +4,7 @@ resource "helm_release" "cluster_autoscaler" {
   chart      = "cluster-autoscaler"
 
   namespace = "kube-system"
-  version   = "9.28.0"
+  version   = "9.35.0"
 
   values = [templatefile("${path.module}/templates/cluster-autoscaler.yaml.tpl", {
     cluster_name        = terraform.workspace
