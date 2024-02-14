@@ -75,7 +75,7 @@ resource "helm_release" "cluster-proportional-autoscaler-cpu" {
   chart      = "cluster-proportional-autoscaler"
   namespace  = kubernetes_namespace.overprovision[count.index].id
   repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
-  version    = "1.0.1"
+  version    = "1.1.0"
 
   values = [templatefile("${path.module}/templates/cpa-cpu.yaml.tpl", {
   })]
