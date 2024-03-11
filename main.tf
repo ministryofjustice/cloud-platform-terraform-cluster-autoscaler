@@ -60,6 +60,7 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
       "autoscaling:SetDesiredCapacity",
       "autoscaling:TerminateInstanceInAutoScalingGroup",
       "autoscaling:UpdateAutoScalingGroup",
+      "eks:DescribeNodegroup",
     ]
 
     resources = ["*"]
