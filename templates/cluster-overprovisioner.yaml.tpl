@@ -117,7 +117,7 @@ deployments:
       #   topologyKey: kubernetes.io/hostname
       #   whenUnsatisfiable: ScheduleAnyway
 
-  # Daemonset Overprovisioner deployment
+  # Daemonset Overprovisioner deployment - This does not create a new daemonset but mimics other overprovisions by adding new pods with the topologySpreadConstraints to ensure distribution across nodes.
   - name: daemonset
     # deployments[0].annotations -- Default Deployment - Annotations to add to the deployment
     annotations: {}
