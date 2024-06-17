@@ -69,7 +69,6 @@ module "cluster_autoscaler" {
 ## Outputs
 
 No outputs.
-
 <!-- END_TF_DOCS -->
 
 ## Reading Material
