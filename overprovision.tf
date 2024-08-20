@@ -17,12 +17,6 @@ locals {
     default = "10m"
   }
 
-  daemonset_overprovision = {
-    manager = "10m"
-    live    = var.live_cpu_request
-    live-2  = var.live_cpu_request
-    default = "10m"
-  }
 }
 
 resource "kubernetes_namespace" "overprovision" {
@@ -59,7 +53,6 @@ resource "helm_release" "cluster-overprovisioner" {
   values = [templatefile("${path.module}/templates/cluster-overprovisioner.yaml.tpl", {
     memory_overprovision = lookup(local.memory_overprovision, terraform.workspace, local.memory_overprovision["default"])
     cpu_overprovision    = lookup(local.cpu_overprovision, terraform.workspace, local.cpu_overprovision["default"])
-    daemonset_overprovision    = lookup(local.daemonset_overprovision, terraform.workspace, local.daemonset_overprovision["default"])
   })]
 
 }
@@ -86,19 +79,6 @@ resource "helm_release" "cluster-proportional-autoscaler-cpu" {
   version    = "1.1.0"
 
   values = [templatefile("${path.module}/templates/cpa-cpu.yaml.tpl", {
-  })]
-
-}
-
-resource "helm_release" "cluster-proportional-autoscaler-daemonset" {
-  count      = var.enable_overprovision ? 1 : 0
-  name       = "cluster-proportional-autoscaler-daemonset"
-  chart      = "cluster-proportional-autoscaler"
-  namespace  = kubernetes_namespace.overprovision[count.index].id
-  repository = "https://kubernetes-sigs.github.io/cluster-proportional-autoscaler"
-  version    = "1.1.0"
-
-  values = [templatefile("${path.module}/templates/cpa-daemonset.yaml.tpl", {
   })]
 
 }
