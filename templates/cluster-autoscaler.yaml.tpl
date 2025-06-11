@@ -1,3 +1,13 @@
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+                - aws-cluster-autoscaler
+        topologyKey: kubernetes.io/instance
 
 cloudProvider: aws
 awsRegion: eu-west-2
@@ -27,6 +37,7 @@ rbac:
     annotations:
       eks.amazonaws.com/role-arn: "${eks_service_account}" 
   
+replicaCount: 3
 
 ## Are you using Prometheus Operator?
 serviceMonitor:
