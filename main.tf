@@ -4,7 +4,7 @@ resource "helm_release" "cluster_autoscaler" {
   chart      = "cluster-autoscaler"
 
   namespace = "kube-system"
-  version   = "9.37.0"
+  version   = "9.44.0"
 
   values = [templatefile("${path.module}/templates/cluster-autoscaler.yaml.tpl", {
     image_version       = "v1.31.0"
