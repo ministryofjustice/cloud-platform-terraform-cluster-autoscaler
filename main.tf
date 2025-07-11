@@ -7,6 +7,7 @@ resource "helm_release" "cluster_autoscaler" {
   version   = "9.44.0"
 
   values = [templatefile("${path.module}/templates/cluster-autoscaler.yaml.tpl", {
+    image_version       = "v1.31.0"
     cluster_name        = terraform.workspace
     iam_role            = module.iam_assumable_role_admin.iam_role_name
     eks_service_account = module.iam_assumable_role_admin.iam_role_arn
