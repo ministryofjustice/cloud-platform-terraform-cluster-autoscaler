@@ -6,7 +6,7 @@ image:
   # image.repository -- Image repository
   repository: registry.k8s.io/autoscaling/cluster-autoscaler
   # image.tag -- Image tag
-  tag: ""
+  tag: v1.31.0
 
 autoDiscovery:
   clusterName: ${cluster_name}
