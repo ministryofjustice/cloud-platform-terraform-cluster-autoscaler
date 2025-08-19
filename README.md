@@ -25,7 +25,7 @@ module "cluster_autoscaler" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=3.0.0 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >=2.6.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >=3.0.2 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >=2.12.1 |
 
 ## Providers
@@ -33,7 +33,7 @@ module "cluster_autoscaler" {
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >=3.0.0 |
-| <a name="provider_helm"></a> [helm](#provider\_helm) | >=2.6.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | >=3.0.2 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | >=2.12.1 |
 
 ## Modules
@@ -51,6 +51,7 @@ module "cluster_autoscaler" {
 | [helm_release.cluster-proportional-autoscaler-cpu](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.cluster-proportional-autoscaler-memory](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.cluster_autoscaler](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.vpa](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_namespace.overprovision](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [aws_iam_policy_document.cluster_autoscaler](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
@@ -62,6 +63,7 @@ module "cluster_autoscaler" {
 | <a name="input_eks_cluster_id"></a> [eks\_cluster\_id](#input\_eks\_cluster\_id) | The EKS cluster ID used by the autoscaler | `any` | n/a | yes |
 | <a name="input_eks_cluster_oidc_issuer_url"></a> [eks\_cluster\_oidc\_issuer\_url](#input\_eks\_cluster\_oidc\_issuer\_url) | If EKS variable is set to true this is going to be used when we create the IAM OIDC role | `string` | `""` | no |
 | <a name="input_enable_overprovision"></a> [enable\_overprovision](#input\_enable\_overprovision) | Enable or disbale creation of overprovisioner | `bool` | `true` | no |
+| <a name="input_enable_vpa_recommender"></a> [enable\_vpa\_recommender](#input\_enable\_vpa\_recommender) | Enable or disable creation of VPA recommender-only deployment | `bool` | `false` | no |
 | <a name="input_live_cpu_request"></a> [live\_cpu\_request](#input\_live\_cpu\_request) | Overprovisioner cpu request for live pods | `string` | `"200m"` | no |
 | <a name="input_live_memory_request"></a> [live\_memory\_request](#input\_live\_memory\_request) | Overprovisioner memory request for live pods | `string` | `"1800Mi"` | no |
 

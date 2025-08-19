@@ -29,3 +29,9 @@ variable "live_cpu_request" {
   type        = string
   default     = "200m"
 }
+
+variable "enable_vpa_recommender" {
+  description = "Enable or disable creation of VPA recommender-only deployment"
+  type        = bool
+  default     = false
+}
