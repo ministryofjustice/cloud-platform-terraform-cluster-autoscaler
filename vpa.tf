@@ -8,16 +8,21 @@ resource "helm_release" "vpa" {
   namespace  = "kube-system"
   create_namespace = false
 
-  set {
-    name  = "recommender.enabled"
-    value = "true"
-  }
-  set {
-    name  = "updater.enabled"
-    value = "false"
-  }
-  set {
-    name  = "admissionController.enabled"
-    value = "false"
-  }
+  set = [
+    {
+      name  = "recommender.enabled"
+      value = "true"
+    },
+    {
+      name  = "updater.enabled"
+      value = "false"
+    },
+    {
+      name  = "admissionController.enabled"
+      value = "false"
+    }
+  ]
 }
+
+
+
