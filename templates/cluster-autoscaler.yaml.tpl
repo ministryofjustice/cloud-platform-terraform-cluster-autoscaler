@@ -2,12 +2,6 @@
 cloudProvider: aws
 awsRegion: eu-west-2
 
-image:
-  # image.repository -- Image repository
-  repository: registry.k8s.io/autoscaling/cluster-autoscaler
-  # image.tag -- Image tag
-  tag: ${image_version}
-
 autoDiscovery:
   clusterName: ${cluster_name}
 
@@ -25,8 +19,8 @@ rbac:
     create: true
     name: cluster-autoscaler
     annotations:
-      eks.amazonaws.com/role-arn: "${eks_service_account}" 
-  
+      eks.amazonaws.com/role-arn: "${eks_service_account}"
+
 
 ## Are you using Prometheus Operator?
 serviceMonitor:
