@@ -4,7 +4,7 @@ resource "helm_release" "vpa" {
   name       = "vpa"
   repository = "https://charts.fairwinds.com/stable"
   chart      = "vpa"
-  version    = "4.8.1"
+  version    = "4.10.1"
   namespace  = "kube-system"
   create_namespace = false
 

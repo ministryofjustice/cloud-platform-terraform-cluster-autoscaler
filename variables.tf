@@ -35,3 +35,9 @@ variable "enable_vpa_recommender" {
   type        = bool
   default     = false
 }
+
+variable "role-name" {
+  description = "IAM role name suffix for the cluster autoscaler"
+  type        = string
+  default = ""
+}
